@@ -1,13 +1,13 @@
 var Base = require('./base');
 
 class User extends Base {
-  constructor() {
-    super('user');
+  constructor(db) {
+    super('users', db);
   }
 
-  cpf (cpf) {
-    return this.data.find(function(user) {
-      return user.cpf == cpf;
+  cpf (cpf, callback) {
+    this.db.query('SELECT * FROM '+this.name+' WHERE cpf='+cpf, function(error, results, fields){
+      callback(error, results, fields);
     });
   }
 }

@@ -1,6 +1,7 @@
 class Base{
-  constructor (name) {
+  constructor (name, connection) {
     this.name = name;
+    this.db = connection;
   }
 
   get find() {

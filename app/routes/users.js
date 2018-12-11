@@ -8,25 +8,38 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login');
+  console.log(req.session);
+  if (req.session.usercpf != null) {
+    res.redirect('/depoiments');
+  } else {
+    res.render('login');
+  }
+  
 });
 
 router.post('/login', function(req, res, next){
-  let user = new User();
-  let userFound = user.find.by.cpf(req.body.cpf);
-  if (userFound != null) {
-    if (userFound.password == req.body.password) {
-      res.render('logado');
-    } else {
-      res.send('não logado');
+  let user = new User(res.locals.connection);
+  user.find.by.cpf(req.body.cpf, function(error, results, fields) {
+    let userFound = null
+    if (results.length > 0) {
+      userFound= results[0];
     }
-  } else {
-    res.send('não logado');
-  }
-  //Buscar o usuário pelo cpf
-  //Verificar se a senha bate
-  // Se sim enviar para página inicial
-  // Se não mostrar mensagem de erro.
+    if (userFound != null) {
+      if (userFound.senha == req.body.password) {
+        req.session.usercpf = userFound.cpf;
+        res.redirect('/depoiments');
+      } else {
+        res.redirect('/users/login', {message: 'CPF ou senha não confere'});
+      }
+    } else {
+      res.redirect('/users/login', {message: 'CPF ou senha não confere'});
+    }
+    //Buscar o usuário pelo cpf
+    //Verificar se a senha bate
+    // Se sim enviar para página inicial
+    // Se não mostrar mensagem de erro.
+  });
+  
 });
 
 router.get('/register', function(req, res, next) {
