@@ -1,4 +1,4 @@
-document.querySelector('#btn-acessar').onclick = evt => {
+ document.querySelector('#btn-acessar').onclick = evt => {
   JSHelpers.toggleClass('.container-right', 'active');
   JSHelpers.toggleClass('.container-left', 'active');
   JSHelpers.toggleClass('.container', 'active');   
