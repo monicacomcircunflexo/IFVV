@@ -13,8 +13,10 @@ module.exports.cadastrar_user = function(app,req,res) {
 	let erros = req.validationErrors();
 
 	if(erros){
-		console.log(erros);
-		return erros;
+		res.status(403).json({
+			sucess:false,
+			message:erros
+		});
 	}else{
 		let usuario = {
 			Nome:req.body.nome,
@@ -26,11 +28,15 @@ module.exports.cadastrar_user = function(app,req,res) {
 		let registrar = consultas.cadastrar_user(usuario);
 
 		if(registrar == false){
-			let mensagem = [{msg:'Não foi possivel registrar usuário.'}];
-			return mensagem;
+			res.status(403).json({
+				sucess:false,
+				message:'Não foi possivel registrar usuário.'
+			});
 		}else{
-			let mensagem = [{msg:'Usuário registrado com sucesso.'}];
-			return mensagem;
+			res.status(403).json({
+				sucess:true,
+				message:'Usuário registrado com sucesso.'
+			});
 		}
 	}
 }
