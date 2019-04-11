@@ -21,9 +21,6 @@ class Login extends Component{
 		                <Form.Group controlId="formBasicEmail">
 		                  <Form.Label>CPF:</Form.Label>
 		                  <Form.Control  type="CPF" placeholder="Digite seu CPF" 	 />
-		                  <Form.Text className="text-muted">
-		                    We'll never share your email with anyone else.
-		                  </Form.Text>
 		                </Form.Group>
 		                <Form.Group controlId="formBasicPassword">
 		                  <Form.Label>Senha:</Form.Label>
