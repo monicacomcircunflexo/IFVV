@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './header';
 import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './Register_cadastro.css';
 
@@ -16,11 +17,7 @@ class Register extends Component {
   render () {
     return (
       <div>
-        <Navbar bg="ifvv" variant="dark">
-          <Navbar.Brand href="#home">
-            {this.props.title}
-          </Navbar.Brand>
-        </Navbar>
+       <Header title={this.props.title} />
         <Container>
           <Row>
             <Col xs={1}></Col>
