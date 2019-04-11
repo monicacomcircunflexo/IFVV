@@ -54,7 +54,7 @@ class Register extends Component {
                 <Form.Group controlId="formBasicChecbox">
                   <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
-                <Button variant="ifvv" block onClick={this.whenSubmit.bind(this)}>
+                <Button variant="ifvv" block onClick={this.whenChangeEmail.bind(this)}>
                   Cadastrar
                 </Button>
               </Form>
