@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
-import './Register.css';
+import './Register_cadastro.css';
 
 class Register extends Component {
   constructor(props) {
@@ -13,15 +13,6 @@ class Register extends Component {
       password: ''
     }
   }
-
-  whenChangeEmail(event) { 
-    let newValue = event.target.value;
-    this.setState(previousState => {
-      previousState.email = newValue;
-      return previousState;
-    });
-  }
-
   render () {
     return (
       <div>
@@ -33,7 +24,9 @@ class Register extends Component {
         <Container>
           <Row>
             <Col xs={1}></Col>
-            <Col xs={10}><img src="img/logo.png" class="logo img-fluid" /></Col>
+            <Col xs={10} className="logo">
+              <img src="img/logo.png" class=" img-fluid" />
+            </Col>
             <Col xs={1}></Col>
           </Row>
           <Row>
@@ -41,20 +34,26 @@ class Register extends Component {
             <Col xs={10}>
               <Form>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Endereço de email</Form.Label>
-                  <Form.Control onChange={this.whenChangeEmail.bind(this)} type="email" placeholder="Enter email" value={this.state.email}  />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
+                  <Form.Label>Nome completo:</Form.Label>
+                  <Form.Control type="nome" placeholder="Nome completo" value={this.state.email}  />
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Senha</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Label>CPF:</Form.Label>
+                  <Form.Control type="number" placeholder="CPF" />
                 </Form.Group>
-                <Form.Group controlId="formBasicChecbox">
-                  <Form.Check type="checkbox" label="Check me out" />
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Data Nascimento:</Form.Label>
+                  <Form.Control type="date" placeholder="Data Nascimento:" />
                 </Form.Group>
-                <Button variant="ifvv" block onClick={this.whenChangeEmail.bind(this)}>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>E-mail:</Form.Label>
+                  <Form.Control type="email" placeholder="E-mail" />
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Senha:</Form.Label>
+                  <Form.Control type="password" placeholder="Senha" />
+                </Form.Group>
+                <Button variant="ifvv" block>
                   Cadastrar
                 </Button>
               </Form>

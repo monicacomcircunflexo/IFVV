@@ -39,6 +39,7 @@ class App extends Component {
             Learn React
           </a>
           <Link to="/register">Cadastro</Link>
+          <Link to="/login">Acessar</Link>
         </header>
       </div>
     );
