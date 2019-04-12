@@ -21,6 +21,7 @@ class Header extends Component{
 	         <Menu pageWrapId = { " page-wrap " } className='sidebar'>
 		        <a id="home" className="menu-item" href="/register">Cadastrar</a>
 		        <a id="about" className="menu-item" href="/login">Login</a>
+		        <a id="" className="menu-item" href="/unburdenView">Desabafos Alheios</a>
 		      </Menu>	
 	        </div>
     	)

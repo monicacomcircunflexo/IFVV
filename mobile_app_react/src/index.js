@@ -15,7 +15,7 @@ ReactDOM.render(
     <Route path="/" exact={true} component={App} />
     <Route path="/register" render= {props => <Register title="IFVV - Novo membro" />} />
      <Route path="/login" render= {props => <Login title="IFVV " />} />
-    <Route path="/unburden" component={UnburdenView} />
+    <Route path="/unburden" render={props => <UnburdenView title="IFVV " />} />
   </Switch>
 </BrowserRouter>, document.getElementById('root'));
 
