@@ -10,8 +10,8 @@ const config ={}
 config.JWT_KEY = '98754WAZXCVBNKO875ESXMKI7ESX';
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(expressValidator());
 
 app.use(function(req, res,next) {
