@@ -1,5 +1,8 @@
 module.exports = function(app){
-	app.post('/login',function(req,res){
+	app.post('/entrar',function(req,res){
 		app.app.controllers.login.logar(app,req,res);
+	})
+	app.get('/*',function(req,res,next){
+		app.app.controllers.auth_verify.auth(app,req,res,next);
 	})
 }

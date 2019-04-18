@@ -4,9 +4,8 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const app = express();
 
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(expressValidator());
 
 app.use(function(req, res,next) {
