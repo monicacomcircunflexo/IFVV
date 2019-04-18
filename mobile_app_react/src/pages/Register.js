@@ -16,6 +16,7 @@ class Register extends Component {
       password: '',
       check_password: '',
       show: false,
+      message:'Usuário cadastrado com sucesso',
       errors: {
         cpf: {
           status: false,
@@ -61,8 +62,10 @@ class Register extends Component {
       body: JSON.stringify(this.state)
     }).then(async function(response){
       if (response.ok) {
+        let res = await response.json();  
         _self.setState((prevState) => {
           prevState.show = true;
+          prevState.message = res.confirm;
           return prevState;
         });
       } else if(response.status == 403)  {
@@ -175,11 +178,10 @@ class Register extends Component {
         </Container>
         <Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
           <Modal.Header closeButton>
-            <Modal.Title>Usuário cadastrado com sucesso</Modal.Title>
+            <Modal.Title>{this.state.message}</Modal.Title>
           </Modal.Header>
-          <Modal.Body></Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose.bind(this)}>
+            <Button variant="ifvv" onClick={this.handleClose.bind(this)}>
               Fechar
             </Button>
           </Modal.Footer>
