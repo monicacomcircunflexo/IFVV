@@ -2,12 +2,7 @@ const express = require('express');
 const consign = require('consign');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
-const jwt = require('jsonwebtoken');
-
 const app = express();
-const config ={}
-
-config.JWT_KEY = '98754WAZXCVBNKO875ESXMKI7ESX';
 
 
 app.use(express.json());

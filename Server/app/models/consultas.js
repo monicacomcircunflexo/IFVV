@@ -5,8 +5,8 @@ class Consultas{
 	cadastrar_user(json){
 		this.connection.database().ref("usuarios").push().set(json);
 	}
-	verificar_usuario(cpf,senha,callback){
-		this.connection.database().ref("usuarios").orderByChild("cpf").startAt(cpf).on("child_added", callback);
+	usuarios(cpf,callback){
+		this.connection.database().ref("/usuarios").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(callback);
 	}
 }
 
