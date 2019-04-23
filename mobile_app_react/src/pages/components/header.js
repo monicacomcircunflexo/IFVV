@@ -25,6 +25,7 @@ class Header extends Component{
 		        <a id="home" className="menu-item" href="/register">Cadastrar</a>
 		        <a id="about" className="menu-item" href="/login">Login</a>
 		        <a id="" className="menu-item" href="/unburden">Desabafos Alheios</a>
+		        <a id="" className="menu-item" href="/unburdenList">Lista de Desabafos</a>
 		      </Menu>	
 	        </div>
     	)
