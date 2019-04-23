@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Header from './header';
+import Header from './components/header';
 import {NavBar, Container, Row, Col, Media, MediaBody} from 'react-bootstrap';
-//import './UnburdenView.css';
+import './css/UnburdenView.css';
 
 class UnburdenView extends Component {
 
