@@ -12,8 +12,8 @@ class UnburdenView extends Component {
         <Header title={this.props.title}  />
         <Container className='postagens'>
 		   <Row className='postar_desabafo'>
-	            <Col xs={2}><img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" class="img-fluid mr-3" /></Col>
-	            <Col xs={10}>
+	            <Col sm={2} className='center-img'><img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" class="img-fluid mr-3" /></Col>
+	            <Col sm={10}>
 	            	<Form>
 	            		<Form.Group controlId="exampleForm.ControlTextarea1">
 						    <Form.Control as="textarea" rows="3" placeholder="Sou macho alfa" />
