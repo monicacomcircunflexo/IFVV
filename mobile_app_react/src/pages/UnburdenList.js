@@ -1,37 +1,53 @@
 import React, { Component } from 'react';
 import Header from './components/header';
+import DesabafoPessoal from './components/desabafoPessoal'
 import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './css/Register_cadastro.css';
-import './css/UnburdenView.css';
+import './css/UnburdenList.css';
+import './css/desabafoPessoal.css';
 
-class UnburdenList extends Component{
-	 render () {
-    	return (
-    		  <div>
-		        <Header title={this.props.title}  />
-		        <Container>
-		          <Row>
-		            <Col xs={1}></Col>
-		            <Col xs={10} className="logo"><img src="img/logo.png" class="img-fluid" /></Col>
-		            <Col xs={1}></Col>
-		          </Row>
-		          <Row>
-		            <Col xs={1}></Col>
-		            <Col xs={10}>
-		       		<Col xs={3}><img src="img/girl.png" class="img-fluid mr-3" /></Col><Col xs={3}><p>Marcos Lopes</p></Col>
-	            	<Col xs={7}><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></Col>
-	            	<Col xs={7}><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></Col>
-	            	<Col xs={7}><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></Col>
-	            	<Col xs={7}><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></Col>
-	            	<Col xs={7}><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></Col>
-	            	<Col xs={7}><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></Col>
-	            	</Col>
-		            <Col xs={1}></Col>
-		          </Row>
-		        </Container>
-		      </div>
-    	);
-     }
+
+class UnburdenList extends Component {
+
+  render() {
+    return (
+      <div>
+        <Header title={this.props.title}  />
+        <Container className='postagens'>
+		    <div className='linha'></div>
+		    <Row>
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />
+		    	<DesabafoPessoal />		    	
+		    </Row>
+		</Container>
+      </div>
+    );
+  }
+
 }
 
 export default UnburdenList;
