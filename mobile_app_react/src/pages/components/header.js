@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar} from 'react-bootstrap';
 import { slide as Menu } from 'react-burger-menu'
-import './Register_cadastro.css';
+import '../css/Register_cadastro.css';
+import Perfil from './perfil'
 
 class Header extends Component{
 	constructor(props){
@@ -19,9 +20,12 @@ class Header extends Component{
 	          </Navbar.Brand>
 	        </Navbar>
 	         <Menu pageWrapId = { " page-wrap " } className='sidebar'>
+	         	<Perfil />
+	         	<a id="perfil" className="menu-item" href="/perfil">Perfil</a>
 		        <a id="home" className="menu-item" href="/register">Cadastrar</a>
 		        <a id="about" className="menu-item" href="/login">Login</a>
-		        <a id="" className="menu-item" href="/unburdenView">Desabafos Alheios</a>
+		        <a id="" className="menu-item" href="/unburden">Desabafos Alheios</a>
+		        <a id="" className="menu-item" href="/unburdenList">Lista de Desabafos</a>
 		      </Menu>	
 	        </div>
     	)

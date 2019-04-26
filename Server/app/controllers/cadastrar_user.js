@@ -31,8 +31,9 @@ module.exports.cadastrar_user = function(app,req,res) {
 					    value: '' } ]
 		});	
 	}else{
-		consultas.usuarios(req.body.cpf,(data)=>{
-			if((data.val() == null)){
+		consultas.usuarios(req.body.cpf,async (data)=>{
+			let dados = await data.val();
+		  if((dados == null)){
 				let usuario = {
 					nome:req.body.name,
 					cpf:req.body.cpf,

@@ -1,0 +1,19 @@
+
+.postagens{
+	padding:40px 20px;
+}
+
+.postar_desabafo{
+	display:flex;
+	align-items:center;
+	justify-content:center;	
+}
+.postar_desabafo img{
+	max-width:8rem;
+	border-radius:100px;
+}
+.linha{
+	width:100%;
+	margin-top: 30px;
+	border-bottom:1px solid #ededed;
+}

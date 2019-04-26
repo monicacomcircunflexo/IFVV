@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './header';
+import Header from './components/header';
 import { Navbar, Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
-import './Register_cadastro.css';
+import './css/Register_cadastro.css';
 import formatCpf from '@brazilian-utils/format-cpf';
 
 
@@ -195,8 +195,6 @@ class Register extends Component {
       </div>
     )
   }
-
-  
 }
 
 export default Register;

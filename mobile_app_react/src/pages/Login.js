@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './header';
+import Header from './components/header';
 import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
-import './Register_cadastro.css';
+import './css/Register_cadastro.css';
 
 class Login extends Component{
 	 render () {

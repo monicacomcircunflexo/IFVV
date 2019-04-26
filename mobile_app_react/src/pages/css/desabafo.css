@@ -1,0 +1,21 @@
+.desabafo_container{
+	align-items:center;
+	display:flex;
+	justify-content:center;
+
+	padding:40px 20px;
+}
+p{
+	text-align:justify;
+}
+.desabafo_container img{
+	max-width:8rem;
+	border-radius:100px;
+}
+.desabafo_container a{
+	color:#eaad29;
+}
+.desabafo_container a:hover{
+	text-decoration: none;
+	color:#eaad29;
+}

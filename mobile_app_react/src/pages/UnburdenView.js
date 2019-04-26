@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import Header from './header';
-import {NavBar, Container, Row, Col, Media, MediaBody} from 'react-bootstrap';
-//import './UnburdenView.css';
+import Header from './components/header';
+import Desabafo from './components/desabafo';
+import {NavBar, Container, Row, Col,Form,Button} from 'react-bootstrap';
+import './css/UnburdenView.css';
 
 class UnburdenView extends Component {
 
@@ -9,17 +10,54 @@ class UnburdenView extends Component {
     return (
       <div>
         <Header title={this.props.title}  />
-        <Container>
-            <Row>
-		        <Col xs={1}></Col>
-		        <Col xs={10} className="logo"><img src="img/logo.png" class="img-fluid" /></Col>
-		       <Col xs={1}></Col>
+        <Container className='postagens'>
+		   <Row className='postar_desabafo'>
+	            <Col xs={2}><img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" class="img-fluid mr-3" /></Col>
+	            <Col xs={10}>
+	            	<Form>
+	            		<Form.Group controlId="exampleForm.ControlTextarea1">
+						    <Form.Control as="textarea" rows="3" placeholder="Sou macho alfa" />
+						</Form.Group>
+	            	</Form>
+	            	<Form.Group	>
+			          <Form.Check
+			            required
+			            label="ANONIMO"
+			     	/>
+			        </Form.Group	>
+	            	 <Button variant="ifvv" type="submit">
+					    DESABAFAR
+					 </Button>
+	            </Col>
 		    </Row>
+		    <div className='linha'></div>
 		    <Row>
-	            <Col xs={1}></Col>
-	            <Col xs={3}><img src="img/girl.png" class="img-fluid mr-3" /></Col>
-	            <Col xs={7}><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></Col>
-	            <Col xs={1}></Col>
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />	
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
+		    	<Desabafo />
 		    </Row>
 		</Container>
       </div>
