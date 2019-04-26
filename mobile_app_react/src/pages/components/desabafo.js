@@ -7,11 +7,11 @@ class Desabafo extends Component{
 	
 	 render () {
     	return (
-    		<Row xs={12} className='desabafo_container'>
-    		 	<Col xs={2}>
+    		<Row sm={12} className='desabafo_container'>
+    		 	<Col sm={2} className='center-img'>
     		 		<img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" class="img-fluid mr-3" />
     		 	</Col>
-    		 	<Col xs={10}>
+    		 	<Col sm={10}>
     		 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
