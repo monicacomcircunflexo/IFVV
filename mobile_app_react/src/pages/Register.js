@@ -65,6 +65,12 @@ class Register extends Component {
         let res = await response.json();  
         _self.setState((prevState) => {
           prevState.show = true;
+          prevState.cpf = '';
+          prevState.name = '';
+          prevState.birth_date = '';
+          prevState.email = '';
+          prevState.password = '';
+          prevState.check_password = '';
           prevState.message = res.confirm;
           return prevState;
         });
