@@ -17,7 +17,7 @@ module.exports.auth = function(app,req,res,next) {
 		      } else {
 		          return res.json({
 		          	success: true,
-		        	message: decoded
+		        	perfil: decoded
 		        });
 		      }
 		    });
