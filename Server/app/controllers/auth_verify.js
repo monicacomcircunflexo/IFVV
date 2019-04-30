@@ -9,15 +9,16 @@ module.exports.auth = function(app,req,res,next) {
 		       	 token = token.slice(7, token.length);
 		    }
 		    jwt.verify(token, config.secret, (err, decoded) => {
-		    	console.log(decoded);
 		      if (err) {
-		        return res.json({
+		        return res.status(403).json({
 		          success: false,
 		          message: 'Token inválido'
 		        });
 		      } else {
-		        req.decoded = decoded;
-		        next();
+		          return res.json({
+		          	success: true,
+		        	message: decoded
+		        });
 		      }
 		    });
 		  } else {

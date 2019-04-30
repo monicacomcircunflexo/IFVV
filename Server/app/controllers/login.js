@@ -19,10 +19,9 @@ module.exports.logar = function(app,req,res) {
         if (data.val() != null) {
           let token = jwt.sign({dados},
             config.secret,
-            { expiresIn: '1s'
+            { expiresIn: '12h'
             }
           );
-          console.log(token);
           res.json({
             success: true,
             message: 'Logado.',
