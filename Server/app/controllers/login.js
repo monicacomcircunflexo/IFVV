@@ -19,7 +19,6 @@ module.exports.logar = function(app,req,res) {
             data.forEach((user)=>{
               let dados = user.val();
               if(dados.senha == req.body.password){
-                let dados = user.val();
                 let token = jwt.sign({dados},
                   config.secret,
                   { expiresIn: '12h'
