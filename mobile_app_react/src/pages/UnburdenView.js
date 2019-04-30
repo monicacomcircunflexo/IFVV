@@ -5,7 +5,9 @@ import {NavBar, Container, Row, Col,Form,Button} from 'react-bootstrap';
 import './css/UnburdenView.css';
 
 class UnburdenView extends Component {
-
+  constructor(props){
+  	super(props);
+  }
   render() {
     return (
       <div>
