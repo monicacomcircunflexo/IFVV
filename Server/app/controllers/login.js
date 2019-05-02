@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 const config = require('./config.js');
 
 module.exports.logar = function(app,req,res) {
+  let bcrypt = require('bcrypt');
+  let saltRounds  = 12;
 	let firebase_connect =  app.config.connect;
 	let consultas  = new app.app.models.consultas(firebase_connect);
 
@@ -15,25 +17,37 @@ module.exports.logar = function(app,req,res) {
     });
   }else{
       consultas.verificar_usuario(req.body.cpf,(data)=>{
-        let dados = data.val();
-        if (data.val() != null) {
-          let token = jwt.sign({dados},
-            config.secret,
-            { expiresIn: '1s'
-            }
-          );
-          console.log(token);
-          res.json({
-            success: true,
-            message: 'Logado.',
-            token: token
-          });
-        } else {
-          res.status(403).json({
-            success: false,
-            message: 'CPF ou Senha incorretos.'
-          });
-        }
+         if (data.val() != null) {
+            data.forEach((user)=>{
+
+              let dados = user.val();
+              let cpf =  dados.cpf;
+
+              bcrypt.compare(req.body.password, dados.senha, function(err, resposta) {
+                  if(resposta == true){
+                    let token = jwt.sign({cpf},
+                      config.secret,
+                      { expiresIn: '12h'
+                      }
+                    );
+                    res.json({
+                      success: true,
+                      token: token
+                    });
+                  }else{
+                    res.status(403).json({
+                      success: false,
+                      message: 'Senha incorreta.'
+                    });
+                  }
+                });
+            });
+         }else{
+            res.status(403).json({
+              success: false,
+              message: 'CPF ou Senha incorreto.'
+            });
+         }
       });
     }
 }

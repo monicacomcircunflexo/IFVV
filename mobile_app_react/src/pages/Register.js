@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './components/header';
+import Header from './components/header_without_menu';
 import { Navbar, Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
 import './css/Register_cadastro.css';
 import formatCpf from '@brazilian-utils/format-cpf';
