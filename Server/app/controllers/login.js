@@ -15,25 +15,33 @@ module.exports.logar = function(app,req,res) {
     });
   }else{
       consultas.verificar_usuario(req.body.cpf,(data)=>{
-        let dados = data.val();
-        if (data.val() != null) {
-          let token = jwt.sign({dados},
-            config.secret,
-            { expiresIn: 3600
-            }
-          );
-          console.log(token);
-          res.json({
-            success: true,
-            message: 'Logado.',
-            token: token
-          });
-        } else {
-          res.status(403).json({
-            success: false,
-            message: 'CPF ou Senha incorretos.'
-          });
-        }
+         if (data.val() != null) {
+            data.forEach((user)=>{
+              let dados = user.val();
+              if(dados.senha == req.body.password){
+                let token = jwt.sign({dados},
+                  config.secret,
+                  { expiresIn: '12h'
+                  }
+                );
+                res.json({
+                  success: true,
+                  message: 'Logado.',
+                  token: token
+                });
+              }else{
+                res.status(403).json({
+                  success: false,
+                  message: 'Senha incorreta.'
+                });
+              }
+            });
+         }else{
+            res.status(403).json({
+              success: false,
+              message: 'CPF ou Senha incorretos.'
+            });
+         }
       });
     }
 }
