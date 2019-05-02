@@ -1,4 +1,6 @@
 module.exports.cadastrar_user = function(app,req,res) {
+	let bcrypt = require('bcrypt');
+	let saltRounds  = 12;
 	let firebase_connect =  app.config.connect;
 	let consultas  = new app.app.models.consultas(firebase_connect);
 	
@@ -13,7 +15,6 @@ module.exports.cadastrar_user = function(app,req,res) {
 
 
 	let erros = req.validationErrors();
-
 
 	if(erros){
 		res.status(403).json({
@@ -32,14 +33,15 @@ module.exports.cadastrar_user = function(app,req,res) {
 		});	
 	}else{
 		consultas.usuarios(req.body.cpf,async (data)=>{
-			let dados = await data.val();
+		 let dados = await data.val();
 		  if((dados == null)){
-				let usuario = {
+			  bcrypt.hash(req.body.password, saltRounds).then((haspassword)=>{
+			  	let usuario = {
 					nome:req.body.name,
 					cpf:req.body.cpf,
 					data_nascimento:req.body.birth_date,
 					email:req.body.email,
-					senha:req.body.password
+					senha:haspassword
 				}
 				let registrar = consultas.cadastrar_user(usuario);
 
@@ -52,6 +54,7 @@ module.exports.cadastrar_user = function(app,req,res) {
 						confirm:'Usuário registrado com sucesso.'
 					});
 				}
+			  });
 			}else{
 				res.status(203).json({
 					confirm:'Usuário já cadastrado na plataforma.'
