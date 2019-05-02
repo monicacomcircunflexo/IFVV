@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar} from 'react-bootstrap';
 import {NavBar, Container, Row, Col,Form,Button} from 'react-bootstrap';
-import '../css/desabafoPessoal.css';
+//import '../css/desabafoPessoal.css';
 
 class DesabafoPessoal extends Component{
 	

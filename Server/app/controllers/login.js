@@ -19,7 +19,7 @@ module.exports.logar = function(app,req,res) {
         if (data.val() != null) {
           let token = jwt.sign({dados},
             config.secret,
-            { expiresIn: '1s'
+            { expiresIn: 3600
             }
           );
           console.log(token);

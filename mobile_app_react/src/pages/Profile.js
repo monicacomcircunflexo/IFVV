@@ -4,9 +4,9 @@ import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Perfil from './components/perfil';
 import './css/profile.css';
 
-class profile extends Component {
+class Profile extends Component {
   constructor(props){
-  	super(props)
+  	super(props);
   }
   render() {
     return (
@@ -44,4 +44,4 @@ class profile extends Component {
 
 }
 
-export default profile;
+export default Profile;

@@ -3,12 +3,16 @@ import Header from './components/header';
 import Desabafo from './components/desabafo';
 import {NavBar, Container, Row, Col,Form,Button} from 'react-bootstrap';
 import './css/UnburdenView.css';
+import Authenticator from './components/authenticator';
 
 class UnburdenView extends Component {
-
+	constructor (props) {
+		super(props);
+	}
   render() {
     return (
       <div>
+				<Authenticator />
         <Header title={this.props.title}  />
         <Container className='postagens'>
 		   <Row className='postar_desabafo'>
