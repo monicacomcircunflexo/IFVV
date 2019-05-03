@@ -51,7 +51,6 @@ class Register extends Component {
   }
 
   _register () {
-    console.log(this.state);
     var _self = this;
     fetch('http://localhost:3001/users', {
       method: 'POST',

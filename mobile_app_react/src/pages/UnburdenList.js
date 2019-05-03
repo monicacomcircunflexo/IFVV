@@ -3,13 +3,7 @@ import Header from './components/header';
 import DesabafoPessoal from './components/desabafoPessoal'
 import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './css/Register_cadastro.css';
-<<<<<<< HEAD
-import './css/UnburdenList.css';
 
-=======
-// import './css/UnburdenList.css';
-// import './css/desabafoPessoal.css';
->>>>>>> 10d8b8721b220967e265afe439eef99bc2be1265
 
 
 class UnburdenList extends Component {

@@ -17,6 +17,7 @@ module.exports.logar = function(app,req,res) {
     });
   }else{
       consultas.verificar_usuario(req.body.cpf,(data)=>{
+        console.log(data.val());  
          if (data.val() != null) {
             data.forEach((user)=>{
 
@@ -35,7 +36,7 @@ module.exports.logar = function(app,req,res) {
                       token: token
                     });
                   }else{
-                    res.status(403).json({
+                    res.status(401).json({
                       success: false,
                       message: 'Senha incorreta.'
                     });
@@ -43,7 +44,7 @@ module.exports.logar = function(app,req,res) {
                 });
             });
          }else{
-            res.status(403).json({
+            res.status(401).json({
               success: false,
               message: 'CPF ou Senha incorreto.'
             });
