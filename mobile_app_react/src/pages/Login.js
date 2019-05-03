@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/header_without_menu';
-import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Navbar, Container, Row, Col, Form, Button,Alert } from 'react-bootstrap';
 import './css/Register_cadastro.css';
 import {Redirect} from 'react-router-dom';
 import formatCpf from '@brazilian-utils/format-cpf';
@@ -12,7 +12,19 @@ class Login extends Component{
 		this.state = {
 			cpf: '',
 			password: '',
-			loggedIn: false
+			show:false,
+			message:'',
+			loggedIn: false,
+			errors: {
+		        cpf: {
+		          status: false,
+		          msg: ''
+		        },
+		        password: {
+		          status: false,
+		          msg: ''
+		        }
+	      	}
 		}
 	}
 
@@ -33,19 +45,45 @@ class Login extends Component{
       body: JSON.stringify(this.state)
 		}).then(async function(response){
 			let info = await response.json();
-			console.log(info);
 			if (response.status == 200) {
 				localStorage.setItem('token', info.token);
 				_self.setState((prevState) => {
 					prevState.loggedIn = true;
 					return prevState;
 				});
-			} else if (response.status == 403) {
-				
-			}
+			}else if(response.status == 403)  {
+		        let newState = _self.state;
+		        _self._resetErrors();
+		        info.message.forEach(error => {
+		          newState.errors[error.param].status = true;
+		          newState.errors[error.param].msg = error.msg;
+		        });
+		        _self.setState(newState);
+	      	}else if(response.status == 401){
+	      		 _self._resetErrors();
+	      		_self.setState((prevState) => {
+					prevState.show = true;
+					prevState.message = info.message;
+					return prevState;
+				});
+	      	}
 		});
 	}
-
+	 _resetErrors() {
+	    this.setState((prevState) => {
+	      prevState.errors = {
+	        cpf: {
+	          status: false,
+	          msg: ''
+	        },
+	        password: {
+	          status: false,
+	          msg: ''
+	        }
+	      }
+	      return prevState;
+	    });
+	 }
 	_updateField (event) {
     let value = event.target.value;
     let field = event.target.name;
@@ -73,16 +111,21 @@ class Login extends Component{
 								<Form>
 									<Form.Group controlId="formBasicEmail">
 										<Form.Label>CPF:</Form.Label>
-										<Form.Control  type="CPF" name="cpf" value={formatCpf(this.state.cpf)} placeholder="Digite seu CPF" 	 onChange={this._updateField.bind(this)}/>
+										<Form.Control isInvalid={this.state.errors.cpf.status}  type="CPF" name="cpf" value={formatCpf(this.state.cpf)} placeholder="Digite seu CPF" 	 onChange={this._updateField.bind(this)}/>
+										<Form.Control.Feedback type="invalid">{this.state.errors.cpf.msg}</Form.Control.Feedback>
 									</Form.Group>
 									<Form.Group controlId="formBasicPassword">
 										<Form.Label>Senha:</Form.Label>
-										<Form.Control type="password" name="password" value={this.state.password} placeholder="Password" onChange={this._updateField.bind(this)} />
+										<Form.Control isInvalid={this.state.errors.password.status}  type="password" name="password" value={this.state.password} placeholder="Password" onChange={this._updateField.bind(this)} />
+										<Form.Control.Feedback type="invalid">{this.state.errors.password.msg}</Form.Control.Feedback>
 									</Form.Group>
 									<Button variant="ifvv" block onClick={this._login.bind(this)}>
 										Acessar
 									</Button>
 								</Form>
+								<Alert  show={this.state.show} className="espaço-bottom" variant="danger">
+									{this.state.message}
+								</Alert>
 							</Col>
 							<Col xs={1}></Col>
 						</Row>

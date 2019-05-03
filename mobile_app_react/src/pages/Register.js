@@ -163,7 +163,7 @@ class Register extends Component {
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label>Confirmar Senha:</Form.Label>
-                  <Form.Control isInvalid={this.state.errors.check_password.status} type="password" name="check_password" placeholder="Senha" value={this.state.check_password} onChange={this._updateField.bind(this)}/>
+                  <Form.Control isInvalid={this.state.errors.check_password.status} type="password" name="check_password" placeholder="Digite novamente a senha" value={this.state.check_password} onChange={this._updateField.bind(this)}/>
                   <Form.Control.Feedback type="invalid">{this.state.errors.check_password.msg}</Form.Control.Feedback>
                 </Form.Group>
                 <Button variant="ifvv" block onClick={this._register.bind(this)}>

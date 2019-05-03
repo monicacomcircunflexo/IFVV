@@ -23,7 +23,7 @@ class Header extends Component{
 	         	<Perfil />
 	         	<a id="perfil" className="menu-item" href="/perfil">Perfil</a>
 		        <a id="" className="menu-item" href="/unburden">Desabafos Alheios</a>
-		        <a id="" className="menu-item" href="/unburdenList">Lista de Desabafos</a>
+		        <a id="" className="menu-item" href="/unburdenList">Desabafos Pessoais</a>
 		      </Menu>	
 	        </div>
     	)

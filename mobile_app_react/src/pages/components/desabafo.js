@@ -4,7 +4,9 @@ import {NavBar, Container, Row, Col,Form,Button} from 'react-bootstrap';
 import '../css/desabafo.css';
 
 class Desabafo extends Component{
-	
+	 constructor(props){
+	 	super(props);
+	 }
 	 render () {
     	return (
     		<Row sm={12} className='desabafo_container'>

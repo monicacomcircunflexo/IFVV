@@ -5,7 +5,9 @@
 .bg-ifvv {
   background-color: #eaad29;
 }
-
+.espaço-bottom{
+	margin-top: 1rem;
+}
 .logo {
   	align-items: center;
   	display:flex;
