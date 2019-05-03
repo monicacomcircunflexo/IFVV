@@ -3,6 +3,8 @@ import Header from './components/header_without_menu';
 import { Navbar, Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
 import './css/Register_cadastro.css';
 import formatCpf from '@brazilian-utils/format-cpf';
+import User from '../models/users';
+import { userInfo } from 'os';
 
 
 class Register extends Component {
@@ -51,39 +53,29 @@ class Register extends Component {
   }
 
   _register () {
-    console.log(this.state);
     var _self = this;
-    fetch('http://localhost:3001/users', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.state)
-    }).then(async function(response){
-      if (response.ok) {
-        let res = await response.json();  
-        _self.setState((prevState) => {
-          prevState.show = true;
-          prevState.cpf = '';
-          prevState.name = '';
-          prevState.birth_date = '';
-          prevState.email = '';
-          prevState.password = '';
-          prevState.check_password = '';
-          prevState.message = res.confirm;
-          return prevState;
-        });
-      } else if(response.status == 403)  {
-        let res = await response.json();
-        let newState = _self.state;
-        _self._resetErrors();
-        res.message.forEach(error => {
-          newState.errors[error.param].status = true;
-          newState.errors[error.param].msg = error.msg;
-        });
-        _self.setState(newState);
-      }
+    let usersModel = new User;
+    usersModel.store.create('user', this.state).then( async function(user) {
+      _self.setState((prevState) => {
+        prevState.show = true;
+        prevState.cpf = '';
+        prevState.name = '';
+        prevState.birth_date = '';
+        prevState.email = '';
+        prevState.password = '';
+        prevState.check_password = '';
+        prevState.message = user.confirm;
+        return prevState;
+      });
+    }, async function(response) {
+      let res = response.data;
+      let newState = _self.state;
+      _self._resetErrors();
+      res.message.forEach(error => {
+        newState.errors[error.param].status = true;
+        newState.errors[error.param].msg = error.msg;
+      });
+      _self.setState(newState);
     });
   }
 

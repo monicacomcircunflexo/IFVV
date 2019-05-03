@@ -35,9 +35,9 @@ module.exports.cadastrar_user = function(app,req,res) {
 			let dados = await data.val();
 		  if((dados == null)){
 				let usuario = {
-					nome:req.body.name,
+					name:req.body.name,
 					cpf:req.body.cpf,
-					data_nascimento:req.body.birth_date,
+					birth_date:req.body.birth_date,
 					email:req.body.email,
 					senha:req.body.password
 				}

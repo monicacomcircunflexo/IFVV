@@ -5,14 +5,19 @@ class Authenticator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn:false
+      loggedIn:false,
+      token: localStorage.getItem('token')
     }
   }
 
   componentWillMount () {
-    if (localStorage.getItem('token') != null) {
+    if ( this.state.token != null && this._tokenIsValid(this.state.token) ) {
       this.setState({loggedIn: true});
     }
+  }
+
+  async _tokenIsValid (token) {
+    return true;
   }
 
   render() {
