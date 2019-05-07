@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Redirect } from "react-router-dom";
+import Authenticator from "./pages/components/authenticator"
 
 
 class App extends Component {
@@ -18,10 +18,8 @@ class App extends Component {
   }
 
   render() {
-    return this.state.loggedIn ? (
-      <Redirect to="/unburden" />
-    ) : (
-      <Redirect to="/login" />
+    return (
+      <Authenticator />
     );
   }
 }

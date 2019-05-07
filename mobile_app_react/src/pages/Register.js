@@ -55,7 +55,15 @@ class Register extends Component {
   _register () {
     var _self = this;
     let usersModel = new User;
-    usersModel.store.create('user', this.state).then( async function(user) {
+    let s = {
+      cpf: this.state.cpf,
+      name: this.state.name,
+      birth_date: this.state.birth_date,
+      email: this.state.email,
+      password: this.state.password,
+      check_password: this.state.check_password
+    }
+    usersModel.store.create('user', s).then( async function(user) {
       _self.setState((prevState) => {
         prevState.show = true;
         prevState.cpf = '';

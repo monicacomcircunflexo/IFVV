@@ -17,6 +17,7 @@ module.exports.cadastrar_user = function(app,req,res) {
 	let erros = req.validationErrors();
 
 	if(erros){
+		console.log(req.body);
 		res.status(403).json({
 			message:erros
 		});
@@ -37,11 +38,11 @@ module.exports.cadastrar_user = function(app,req,res) {
 		  if((dados == null)){
 			  bcrypt.hash(req.body.password, saltRounds).then((haspassword)=>{
 			  	let usuario = {
-					nome:req.body.name,
+					name:req.body.name,
 					cpf:req.body.cpf,
 					birth_date:req.body.birth_date,
 					email:req.body.email,
-					senha:haspassword
+					password:haspassword
 				}
 				let registrar = consultas.cadastrar_user(usuario);
 

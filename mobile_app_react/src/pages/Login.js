@@ -4,6 +4,7 @@ import { Navbar, Container, Row, Col, Form, Button,Alert } from 'react-bootstrap
 import './css/Register_cadastro.css';
 import {Redirect} from 'react-router-dom';
 import formatCpf from '@brazilian-utils/format-cpf';
+import Authenticator from './components/authenticator';
 
 
 class Login extends Component{
@@ -14,7 +15,6 @@ class Login extends Component{
 			password: '',
 			show:false,
 			message:'',
-			loggedIn: false,
 			errors: {
 		        cpf: {
 		          status: false,
@@ -27,12 +27,6 @@ class Login extends Component{
 	      	}
 		}
 	}
-
-	componentWillMount() {
-    if (localStorage.getItem('token') != null) {
-      this.setState({loggedIn : true});
-    }
-  }
 
 	_login () {
 		var _self = this;
@@ -94,9 +88,7 @@ class Login extends Component{
   }
 
 	render () {
-		return this.state.loggedIn ? (
-			<Redirect to="/" />
-		): (
+		return this.state.loggedIn ? (<Redirect to="/unburden" />) : (
 				<div>
 					<Header title={this.props.title}  />
 					<Container>

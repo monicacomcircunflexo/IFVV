@@ -6,7 +6,6 @@ module.exports.logar = function(app,req,res) {
   let saltRounds  = 12;
 	let firebase_connect =  app.config.connect;
 	let consultas  = new app.app.models.consultas(firebase_connect);
-
   req.assert('cpf','Digite seu CPF.').notEmpty();
   req.assert('password','Digite sua senha.').notEmpty();
   let erros = req.validationErrors();
@@ -24,7 +23,7 @@ module.exports.logar = function(app,req,res) {
               let dados = user.val();
               let cpf =  dados.cpf;
 
-              bcrypt.compare(req.body.password, dados.senha, function(err, resposta) {
+              bcrypt.compare(req.body.password, dados.password, function(err, resposta) {
                   if(resposta == true){
                     let token = jwt.sign({cpf},
                       config.secret,

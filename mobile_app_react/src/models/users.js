@@ -1,18 +1,22 @@
 import { DataStore } from 'js-data';
-import { HttpAdapter } from 'js-data-http';
+import { HttpAdapter, addAction } from 'js-data-http';
 
 class User {
   constructor() {
     this.store = new DataStore();
     var httpAdapter = new HttpAdapter({
-      basePath: 'http://localhost:3001',
-      deserialize: function (mapper, response, opts) {
-        // Else, do default behavior
-        return response;
-      },
-      useFetch: true
-    }
+        basePath: 'http://localhost:3001',
+        useFetch: true,
+        beforeHTTP: function (config, opts) {
+          config.headers || (config.headers = {});
+          config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
+          config.headers.accept = 'application/json';
+          config.headers['content-type'] = 'application/json';
+          return HttpAdapter.prototype.beforeHTTP.call(this, config, opts);
+        }
+      }
     );
+    
     this.store.registerAdapter('http', httpAdapter, { 'default': true });
     this.store.defineMapper('user', {
       endpoint: 'users',
@@ -28,6 +32,10 @@ class User {
         }
       }
     });
+    addAction('isValidToken', {
+      pathname: 'verifyToken',
+      method: 'GET'
+    })(this.store.getMapper('user'));
   }
 }
 
