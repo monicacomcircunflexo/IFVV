@@ -15,6 +15,7 @@ class Authenticator extends Component {
     if ( this.state.token != null && await this._tokenIsValid(this.state.token) ) {
       this.setState({loggedIn: true});
     } else {
+      localStorage.setItem('token', '');
       this.setState({loggedIn: false});
     }
   }
