@@ -20,7 +20,7 @@ class UnburdenView extends Component {
 	            <Col sm={10}>
 	            	<Form>
 	            		<Form.Group controlId="exampleForm.ControlTextarea1">
-						    <Form.Control as="textarea" rows="3" placeholder="Sou macho alfa" />
+						    <Form.Control as="textarea" rows="3" placeholder="O Flopez não é macho alfa" />
 						</Form.Group>
 	            	</Form>
 	            	<Form.Group	>
