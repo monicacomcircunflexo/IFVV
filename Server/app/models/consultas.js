@@ -8,6 +8,12 @@ class Consultas{
 	cadastrar_user(json){
 		this.connection.database().ref("usuarios").push().set(json);
 	}
+	comentar(json){
+		this.connection.database().ref("comentarios").push().set(json);	
+	}
+	comentarios(key,callback){
+		this.connection.database().ref("comentarios").orderByChild("id_desabafo").startAt(key).endAt(key + "\uf8ff").once('value').then(callback);
+	}
 	usuarios(cpf,callback){
 		this.connection.database().ref("/usuarios").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(callback);
 	}
