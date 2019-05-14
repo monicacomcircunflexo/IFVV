@@ -42,7 +42,14 @@ module.exports.comentarios_desabafo = function(app,req,res) {
 		 if(data.val() == null){
 			res.status(403).json({message:'Não há desabafos'})
 		}else{
-			res.json({comentarios:data.val()})
+			const dados = [];
+
+			data.forEach((comentario)=>{
+				dados.push(comentario.val());
+			});
+
+		    res.json({comentarios:dados})
+			
 		}
 	})
 }	
