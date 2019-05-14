@@ -8,7 +8,7 @@ module.exports.cadastrar_user = function(app,req,res) {
 	req.assert('name','Digite seu nome completo.').notEmpty();
 	req.assert('cpf','Digite seu CPF.').notEmpty();
 	req.assert('birth_date','Digite sua data nascimento.').notEmpty();
-	req.assert('email','Digite seu e-mail.').notEmpty();
+ 	req.assert('email','Digite seu e-mail.').notEmpty();
 	req.assert('email','E-mail inválido.').isEmail();
 	req.assert('password','Digite sua senha.').notEmpty();
 	req.assert('check_password','Digite sua senha.').notEmpty();

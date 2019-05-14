@@ -11,17 +11,13 @@ class Desabafo extends Component{
     	return (
     		<Row sm={12} className='desabafo_container'>
     		 	<Col sm={2} className='center-img'>
-    		 		<img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" class="img-fluid mr-3" />
+    		 		<img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" className="img-fluid mr-3" />
     		 	</Col>
     		 	<Col sm={10}>
-    		 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<a href='responder'>RESPONDER</a>
-    		 	</Col>
+    		 		<p>{this.props.desabafo}</p>
+                    <span>{this.props.data}</span>
+					<a href='responder'> RESPONDER</a>
+                </Col>
 	        </Row>
     	)
 	}

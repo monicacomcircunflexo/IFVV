@@ -6,7 +6,11 @@ module.exports.todos_desabafos = function(app,req,res) {
 		 if(data.val() == null){
 			res.status(403).json({message:'Não há desabafos'})
 		}else{
-			res.json({desabafos:data.val()})
+			const dados = [];
+			data.forEach((desabafo)=>{
+				dados.push(desabafo.val());
+			});
+		    res.json({desabafos:dados})
 		}
 	})
 }

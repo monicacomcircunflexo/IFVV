@@ -8,7 +8,6 @@ module.exports.auth = function(app,req,res,next) {
 			 if (token.startsWith('Bearer ')) {
 		       	 token = token.slice(7, token.length);
 				}
-				console.log("aasd");
 		    jwt.verify(token, config.secret, (err, decoded) => {
 		      if (err) {
 		        return res.status(403).json({
