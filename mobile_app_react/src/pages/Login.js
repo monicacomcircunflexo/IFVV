@@ -53,7 +53,7 @@ class Login extends Component{
 		          newState.errors[error.param].msg = error.msg;
 		        });
 		        _self.setState(newState);
-	      	}else if(response.status == 401){
+	      	} else if(response.status == 401){
 	      		 _self._resetErrors();
 	      		_self.setState((prevState) => {
 					prevState.show = true;
