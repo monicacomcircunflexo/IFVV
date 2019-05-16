@@ -7,6 +7,7 @@ class DesabafoPessoal extends Component{
 	
 	 render () {
     	return (
+   
     		<Row sm={12} className='desabafo_container'>
     		 	<Col sm={10}>
     		 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

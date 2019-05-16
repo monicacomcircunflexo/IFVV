@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import UnburdenView from './pages/UnburdenView';
 import UnburdenList from './pages/UnburdenList';
-import Comentarios from './pages/comentarios';
+import Responder from './pages/responder';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
@@ -21,7 +21,7 @@ ReactDOM.render(
     <Route path="/unburden" render={props => <UnburdenView title="IFVV - Desabafos" />} />
     <Route path="/unburdenList" render={props => <UnburdenList title="IFVV " />} />
     <Route path="/perfil" render={props => <Profile title="IFVV " />} />
-    <Route path="/comentarios" render={props => <Comentarios title="IFVV " />} />
+    <Route path="/responder" render={props => <Responder title="IFVV " />} />
   </Switch>
 </BrowserRouter>, document.getElementById('root'));
 

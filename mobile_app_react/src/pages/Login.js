@@ -114,6 +114,9 @@ class Login extends Component{
 									<Button variant="ifvv" block onClick={this._login.bind(this)}>
 										Acessar
 									</Button>
+									<Button variant="ifvv" block href='/register'>
+										Cadastrar
+									</Button>
 								</Form>
 								<Alert  show={this.state.show} className="espaço-bottom" variant="danger">
 									{this.state.message}
