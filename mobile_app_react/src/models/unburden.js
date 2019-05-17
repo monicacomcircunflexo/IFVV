@@ -1,7 +1,18 @@
-import { DataStore } from 'js-data';
+import { DataStore, Schema } from 'js-data';
 import { HttpAdapter, addAction } from 'js-data-http';
 
-class Uburden {
+const unburdenSchema = new Schema({
+  type: 'object',
+  properties: {
+    cpf: { type: 'string' },
+    create_at: { type: 'string' },
+    uburden: { type: 'string' },
+    isAnonimaty: { type: 'string'},
+    visibility: {type: 'boolean'},
+  }
+});
+
+class Unburden {
   constructor() {
     this.store = new DataStore();
     var httpAdapter = new HttpAdapter({
@@ -18,25 +29,15 @@ class Uburden {
     );
     
     this.store.registerAdapter('http', httpAdapter, { 'default': true });
-    this.store.defineMapper('user', {
-      endpoint: 'uburden',
-      schema: {
-        type: 'object',
-        properties: {
-          cpf: { type: 'string' },
-          name: { type: 'string' },
-          email: { type: 'string' },
-          birth_date: { type: 'string'},
-          password: { type: 'string' },
-          check_password: { type: 'string' }
-        }
-      }
+    this.store.defineMapper('unburden', {
+      endpoint: 'unburden',
+      schema: unburdenSchema
     });
-    addAction('isValidToken', {
-      pathname: 'verifyToken',
-      method: 'GET'
-    })(this.store.getMapper('user'));
+    this.store.defineMapper('unburdens', {
+      endpoint: 'unburdens',
+      schema: unburdenSchema
+    });
   }
 }
 
-export default Uburden;
+export default Unburden;
