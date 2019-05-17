@@ -4,7 +4,6 @@ var controller = require('../controllers/user');
 
 
 
-router.get('/:id',controller.get)
 router.post('/:id', controller.post);
 router.put('/:id', controller.put);
 router.delete('/:id', controller.delete);

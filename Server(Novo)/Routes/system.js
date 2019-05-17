@@ -4,7 +4,7 @@ var controller = require('../controllers/system');
 
 
 
-router.post('/login',controller.login)
+router.post('/login',controller.login);
 router.get('/verifytoken', controller.verifytoken);
 
 

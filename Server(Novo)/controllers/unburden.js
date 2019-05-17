@@ -14,11 +14,11 @@ exports.post = (req, res, next) => {
 		date.locale('pt-BR');
 
 		let desabafo = {
-			cpf_usuario:req.body.cpf,
-			desabafo:req.body.desabafo,
-			data_postagem:date().format('LLLL'),
-			anonimo:req.body.anonimo,
-			publico:req.body.anonimo
+			cpf:req.body.cpf,
+			unburden:req.body.desabafo,
+			create_at:date().format('LLLL'),
+			isAnonimaty:req.body.anonimo,
+			visibility:req.body.publico
 		}
 
 		let registrar_desabafo = consulta.postar_desabafo(desabafo);
@@ -42,5 +42,15 @@ exports.delete = (req, res, next) => {
 };
 
 exports.unburden = (req, res, next) => {
-    
+	let connect = require('../config/connect');
+	let consulta = require('../model/consultas')(connect);
+	let cpf = req.params.cpf;
+
+	consulta.desabafos_pessoal(cpf,(data)=>{	
+		 if(data.val() == null){
+			res.status(403).json({message:'Não há desabafos'})
+		}else{
+			res.json({desabafos:data.val()})
+		}
+	})    
 };

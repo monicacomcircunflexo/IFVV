@@ -14,9 +14,10 @@ module.exports.comentar = function(app,req,res) {
 		date.locale('pt-BR');
 
 		let comentario = {
-			id_desabafo:req.body.id_desabafo, // como passar esse id_desabafo ?
-			comentario:req.body.comentario,
-			data_comentario:date().format('LLLL')
+			id_unburden:req.body.id_desabafo, // como passar esse id_desabafo ?
+			comment:req.body.comentario,
+			create_at:date().format('LLLL'),
+			cpf:req.body.cpf,
 		}
 		
 		let comentar = consulta.comentar(comentario);

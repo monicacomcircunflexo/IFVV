@@ -19,7 +19,7 @@ module.exports.desabafos_pessoal = function(app,req,res) {
 	let connect = app.config.connect;
 	let consulta = new app.app.models.consultas(connect);
 
-	consulta.desabafos_pessoal(req.params.key,(data)=>{	
+	consulta.desabafos_pessoal(req.params.cpf,(data)=>{	
 		 if(data.val() == null){
 			res.status(403).json({message:'Não há desabafos'})
 		}else{

@@ -3,11 +3,11 @@ const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
 const app = express();
 
-const unburden = require('../Routes/unburden');
-const system = require('../Routes/system');
-const user =  require('../Routes/user');
-const comment = require('../Routes/comments');
-const unburdens =  require('../Routes/unburdens');
+const unburden = require('../routes/unburden');
+const system = require('../routes/system');
+const user =  require('../routes/user');
+const comment = require('../routes/comments');
+const unburdens =  require('../routes/unburdens');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
