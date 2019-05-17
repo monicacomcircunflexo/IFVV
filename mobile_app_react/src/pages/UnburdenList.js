@@ -3,11 +3,22 @@ import Header from './components/header';
 import DesabafoPessoal from './components/desabafoPessoal'
 import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './css/Register_cadastro.css';
-
+import Unburden from './../models/unburden';
 
 
 class UnburdenList extends Component {
 
+	constructor (props) {
+		super(props);
+
+	}
+
+	componentWillMount () {
+		let unburdenModel = new Unburden();
+		unburdenModel.store.findAll().then((unburdens) => {
+			console.log(unburdens);
+		});
+	}
   render() {
     return (
       <div>
