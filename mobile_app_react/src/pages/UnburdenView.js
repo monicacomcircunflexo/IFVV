@@ -62,8 +62,8 @@ class UnburdenView extends Component {
 	            </Col>
 		    </Row>
 		    <div className='linha'></div>
-		 		 {this.state.desabafos.map(desabafo =>
-                  <Desabafo desabafo={desabafo.desabafo}  data={desabafo.data_postagem}/>
+		 		 {this.state.desabafos.map((desabafo,index) =>
+                  <Desabafo key={index}  desabafo={desabafo.desabafo}  data={desabafo.data_postagem}/>
                 )}
 		</Container>
       </div>
