@@ -1,5 +1,5 @@
 const app = require('./config/server.js');
 
-app.listen(3000,()=>{
-	console.log('Servidor localhost:3000');
+app.listen(3001,()=>{
+	console.log('Servidor localhost:3001');
 })

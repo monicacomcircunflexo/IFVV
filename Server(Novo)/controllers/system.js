@@ -4,7 +4,7 @@ exports.login = (req, res, next) => {
   let bcrypt = require('bcrypt');
   let saltRounds  = 12;
   let connect = require('../config/connect');
-  let consulta = require('../model/consultas')(connect);
+  let consultas = require('../model/consultas')(connect);
 
 
   req.assert('cpf','Digite seu CPF.').notEmpty();
@@ -52,6 +52,34 @@ exports.login = (req, res, next) => {
          }
       });
     }
+};
+
+exports.verifytokenMiddle = (req, res, next) => {
+	let jwt = require('jsonwebtoken');
+	let config = require('../chave.js');
+
+    let token =  req.headers['authorization'];
+	if (token) {
+		if (token.startsWith('Bearer ')) {
+			token = token.slice(7, token.length);
+		}
+		jwt.verify(token, config.secret, (err, decoded) => {
+		    if (err) {
+		        return res.status(403).json({
+		          success: false,
+		          message: 'Token inválido'
+		        });
+		    } else {
+            req.user = decoded;
+            next();
+		    }
+		});
+	} else {
+		return res.json({
+		  success: false,
+		  message: 'Token de autenticação não foi fornecido'
+		});
+	}
 };
 
 exports.verifytoken = (req, res, next) => {

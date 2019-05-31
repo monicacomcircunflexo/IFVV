@@ -11,43 +11,26 @@ class UnburdenView extends Component {
 	super(props);
 	this.state ={
 		desabafos:[],
-		message:''
+		message:'',
+		loggedIn: true
 	 }
 	}
 
 	componentWillMount () {
 		let unburdenModel = new Unburden;
 		unburdenModel.store.findAll('unburdens').then((unburdens) => {
-			this.setState({message: '', desabafos: unburdens})
+			console.log(unburdens);
+			this.setState({message: '', desabafos: unburdens});
+		}).then((message) => {
+			this.setState({message: 'Token expirado', desabafos: []});
 		});
 	}
-  // componentWillMount(){
-  // 	  var _self = this;
-
-  // 	 fetch('http://localhost:3001/todos/desabafos', {
-  //     method: 'GET'
-  //   }).then(async function(response){
-  //     if (response.ok) {
-  //       let res = await response.json();
-  //       _self.setState((prevState) => {
-  //         prevState.desabafos = res.desabafos;
-  //         return prevState;
-  //       });        
-  //     } else if(response.status == 403)  {
-  //       let res = await response.json();
- 	// 	_self.setState((prevState)=>{
- 	// 		prevState.message = res.message;
- 	// 		return prevState;
- 	// 	});
-  //     }
-  //   });
-  // }
 
   render() {
 
     return (
       <div>
-				<Authenticator />
+				<Authenticator message={this.state.message} />
 				<Header title={this.props.title}  />
 				<Container className='postagens'>
 					<Row className='postar_desabafo'>
@@ -70,7 +53,8 @@ class UnburdenView extends Component {
 						</Col>
 					</Row>
 					<div className='linha'></div>
-					{this.state.desabafos.map(desabafo =>
+					{
+						this.state.desabafos.map(desabafo =>
 						<Desabafo desabafo={desabafo.desabafo}  data={desabafo.data_postagem}/>
 					)}
 				</Container>

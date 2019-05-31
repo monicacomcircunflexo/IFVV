@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
-import User from '../../models/users';
+import System from '../../models/system';
 
 class Authenticator extends Component {
   constructor(props) {
@@ -21,11 +21,12 @@ class Authenticator extends Component {
   }
 
   async _tokenIsValid (token) {
-    let userModel = new User();
-    return await userModel.store.getMapper('user').isValidToken().then(async function(user) {
-      return user.data.success;
-    }, async function(user){
-      return user.data.success;
+    let systemModel = new System();
+    return await systemModel.store.getMapper('system').isValidToken().then(async function(system) {
+      return system.data.success;
+    }, async function(system){
+      console.log(system);
+      return system.data.success;
     });
   }
 
@@ -33,7 +34,7 @@ class Authenticator extends Component {
     return this.state.loggedIn ? (
       <div></div>
     ) : (
-      <Redirect to="/login" />
+      <Redirect to={{pathname: "/login", state: { message : this.props.message }}} />
     );
   }
 }
