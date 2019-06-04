@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import Header from './components/header';
 import { Navbar, Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Perfil from './components/perfil';
+import Authenticator from './components/authenticator';
 import './css/profile.css';
+
 
 class Profile extends Component {
   constructor(props){
-  	super(props);
+    super(props);
+    this.state = {
+      user: JSON.parse(localStorage.getItem('user_info'))
+    }
+    console.log(this.state);
   }
   render() {
     return (
       <div>
-        <Header title={this.props.title}  />
+        <Authenticator />
+        <Header title={this.props.title} user={this.state.user} />
         <Container className='profile'>
-         <Perfil/>
+         <Perfil user={this.state.user} />
            <Row>
             <Col xs={1}></Col>
             <Col xs={10}>

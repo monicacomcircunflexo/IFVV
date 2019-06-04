@@ -1,16 +1,16 @@
 exports.login = (req, res, next) => {
-  let jwt = require('jsonwebtoken');
-  let config = require('../chave.js');
-  let bcrypt = require('bcrypt');
-  let saltRounds  = 12;
-  let connect = require('../config/connect');
-  let consultas = require('../model/consultas')(connect);
+  const jwt = require('jsonwebtoken');
+  const config = require('../chave.js');
+  const bcrypt = require('bcrypt');
+  const saltRounds  = 12;
+  const connect = require('../config/connect');
+  var consultas = require('../model/consultas')(connect);
 
 
   req.assert('cpf','Digite seu CPF.').notEmpty();
   req.assert('password','Digite sua senha.').notEmpty();
   
-  let erros = req.validationErrors();
+  var erros = req.validationErrors();
 
   if(erros){
     res.status(403).json({
@@ -23,8 +23,7 @@ exports.login = (req, res, next) => {
            data.forEach((user)=>{
 
               let dados = user.val();
-              let cpf =  dados.cpf;
-
+              let cpf = dados.cpf;
               bcrypt.compare(req.body.password, dados.password, function(err, resposta) {
                   if(resposta == true){
                     let token = jwt.sign({cpf},
@@ -83,25 +82,39 @@ exports.verifytokenMiddle = (req, res, next) => {
 };
 
 exports.verifytoken = (req, res, next) => {
-	let jwt = require('jsonwebtoken');
-	let config = require('../chave.js');
 
-    let token =  req.headers['authorization'];
+	let jwt = require('jsonwebtoken');
+  let config = require('../chave.js');
+  const connect = require('../config/connect');
+  let consultas = require('../model/consultas')(connect);
+
+  let token =  req.headers['authorization'];
 	if (token) {
 		if (token.startsWith('Bearer ')) {
 			token = token.slice(7, token.length);
 		}
-		jwt.verify(token, config.secret, (err, decoded) => {
+		jwt.verify(token, config.secret, function(err, decoded){
 		    if (err) {
 		        return res.status(403).json({
 		          success: false,
 		          message: 'Token inválido'
 		        });
-		    } else {		
-		        return res.json({
-		          success: true,
-		          usuario: decoded
-		        });
+		    } else {
+            consultas.verificar_usuario(decoded.cpf,(data)=>{
+              if (data.val() != null) {
+                data.forEach((user)=>{
+                  user = user.val();
+                  return res.json({
+                    success: true,
+                    user: {
+                      cpf: user.cpf,
+                      name: user.name,
+                      photo: user.photo
+                    }
+                  });
+                });
+              }
+            });
 		    }
 		});
 	} else {

@@ -20,7 +20,7 @@ class Header extends Component{
 	          </Navbar.Brand>
 	        </Navbar>
 	         <Menu pageWrapId = { " page-wrap " } className='sidebar'>
-	         	<Perfil />
+	         	<Perfil user={this.props.user} />
 	         	<a id="perfil" className="menu-item" href="/perfil">Perfil</a>
 		        <a id="" className="menu-item" href="/unburden">Desabafos Alheios</a>
 		        <a id="" className="menu-item" href="/unburdenList">Desabafos Pessoais</a>

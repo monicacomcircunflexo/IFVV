@@ -9,11 +9,13 @@ import Unburden from '../models/unburden';
 class UnburdenView extends Component {
   constructor (props) {
 	super(props);
-	this.state ={
+	this.state = {
 		desabafos:[],
 		message:'',
-		loggedIn: true
+		loggedIn: true,
+		user: JSON.parse(localStorage.getItem('user_info'))
 	 }
+	 console.log(this.state);
 	}
 
 	componentWillMount () {
@@ -30,11 +32,11 @@ class UnburdenView extends Component {
 
     return (
       <div>
-				<Authenticator message={this.state.message} />
-				<Header title={this.props.title}  />
+				<Authenticator />
+				<Header title={this.props.title} user={this.state.user}  />
 				<Container className='postagens'>
 					<Row className='postar_desabafo'>
-						<Col sm={2} className='center-img'><img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" className="img-fluid mr-3" /></Col>
+						<Col sm={2} className='center-img'><img src={this.state.user.photo} className="img-fluid mr-3" /></Col>
 						<Col sm={10}>
 							<Form>
 								<Form.Group controlId="exampleForm.ControlTextarea1">

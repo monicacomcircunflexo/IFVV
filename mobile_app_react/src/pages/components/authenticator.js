@@ -23,6 +23,7 @@ class Authenticator extends Component {
   async _tokenIsValid (token) {
     let systemModel = new System();
     return await systemModel.store.getMapper('system').isValidToken().then(async function(system) {
+      localStorage.setItem('user_info', JSON.stringify(system.data.user));
       return system.data.success;
     }, async function(system){
       console.log(system);
@@ -34,7 +35,7 @@ class Authenticator extends Component {
     return this.state.loggedIn ? (
       <div></div>
     ) : (
-      <Redirect to={{pathname: "/login", state: { message : this.props.message }}} />
+      <Redirect to="/login" />
     );
   }
 }

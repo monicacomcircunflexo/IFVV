@@ -14,7 +14,7 @@ class Login extends Component{
 			cpf: '',
 			password: '',
 			show:false,
-			message: this.props.location.state.message,
+			message: '',
 			errors: {
 		        cpf: {
 		          status: false,

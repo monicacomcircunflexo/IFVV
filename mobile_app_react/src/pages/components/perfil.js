@@ -13,10 +13,10 @@ class Perfil extends Component{
     	return (
     		<div className='perfil'>
 	    		<div className='Perfil-img'>
-	    		 	<img src='http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg' />
+	    		 	<img src={this.props.user.photo} />
 		        </div>
 		        <div className='Perfil-dados'>
-		        	<h1>Marcos Lopes</h1>
+		        	<h1>{this.props.user.name}</h1>
 		        	<div className='Perfil-link'>
 		        		<a>Editar perfil</a>
 		        	</div>
