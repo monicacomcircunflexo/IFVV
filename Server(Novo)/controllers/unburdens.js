@@ -2,17 +2,13 @@ exports.unburdens = (req, res, next) => {
 	let connect = require('../config/connect');
 	let consulta = require('../model/consultas')(connect);
 
-	consulta.todos_desabafos((data)=>{	
-		 if(data.val() == null){
-			res.status(403).json({message:'Não há desabafos'})
-		}else{
-			let dados = [];
+	consulta.todos_desabafos((data)=>{
+		let dados = [];
+		console.log(req.user);
+		data.forEach((desabafo)=>{
+			dados.push(desabafo.val());
+		});
 
-			data.forEach((desabafo)=>{
-				dados.push(desabafo.val());
-			});
-
-			res.json({desabafos:dados})
-		}
+		res.json(dados);
 	})    
 };

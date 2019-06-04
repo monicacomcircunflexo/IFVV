@@ -14,7 +14,7 @@ class Login extends Component{
 			cpf: '',
 			password: '',
 			show:false,
-			message:'',
+			message: '',
 			errors: {
 		        cpf: {
 		          status: false,
@@ -30,7 +30,7 @@ class Login extends Component{
 
 	_login () {
 		var _self = this;
-		fetch('http://localhost:3001/entrar', {
+		fetch('http://localhost:3001/system/login', {
 			method: 'POST',
 			headers: {
         Accept: 'application/json',
@@ -39,6 +39,7 @@ class Login extends Component{
       body: JSON.stringify(this.state)
 		}).then(async function(response){
 			let info = await response.json();
+			console.log(info);
 			if (response.status == 200) {
 				localStorage.setItem('token', info.token);
 				_self.setState((prevState) => {
