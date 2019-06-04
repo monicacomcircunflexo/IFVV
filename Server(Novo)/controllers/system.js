@@ -17,7 +17,7 @@ exports.login = (req, res, next) => {
       message:erros
     });
   }else{
-      consultas.verificar_usuario(req.body.cpf,(data)=>{
+      consulta.verificar_usuario(req.body.cpf,(data)=>{
         console.log(data.val());  
          if (data.val() != null) {
            data.forEach((user)=>{

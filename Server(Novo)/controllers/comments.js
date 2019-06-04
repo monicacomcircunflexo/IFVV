@@ -20,7 +20,11 @@ exports.post = (req, res, next) => {
 			cpf:req.body.cpf,
 		}
 		
-		let comentar = consulta.comentar(comentario);
+		let comentar = consulta.comentar(comentario,()=>{
+
+		},(error)=>{
+
+		});
 
 		if(comentar == false){
 			res.status(403).json({
@@ -33,11 +37,17 @@ exports.post = (req, res, next) => {
 		}
 	}
 };
-exports.put = (req, res, next) => {
-    
-};
+
 exports.delete = (req, res, next) => {
-    
+    let connect = require('../config/connect');
+	let consulta = require('../model/consultas')(connect);
+	let id_comenterio = req.params.id;
+	let delete_comentario = consulta.remover_desabafo(id_comenterio);
+	if(delete_comentario == false){
+		res.status(403).json({message:'Não possivel deletrar comentário'});
+	}else{
+		res.json({message:'Deletado com sucesso !!'});
+	}
 };
 exports.comment = (req, res, next) => {
 	let connect = require('../config/connect');
@@ -57,4 +67,8 @@ exports.comment = (req, res, next) => {
 		    res.json({comentarios:dados})		
 		}
 	})
+};
+
+exports.put = (req, res, next) => {
+    // implementar codificação para editar comentario 
 };

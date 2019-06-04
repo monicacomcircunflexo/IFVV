@@ -43,29 +43,29 @@ exports.post = (req, res, next) => {
 					email:req.body.email,
 					password:haspassword
 				}
-				let registrar = consultas.cadastrar_user(usuario);
-
-				if(registrar == false){
-					res.status(403).json({
-						message:'Não foi possivel registrar usuário.'
-					});
-				}else{
+				let registrar = consultas.cadastrar_user(usuario,(result)=>{
 					res.status(200).json({
 						confirm:'Usuário registrado com sucesso.'
 					});
-				}
+				},(error)=>{
+					res.status(403).json({
+						message:'Não foi possivel registrar usuário.'
+					});
+				});
 			  });
 			}else{
 				res.status(203).json({
 					confirm:'Usuário já cadastrado na plataforma.'
 				});
 			}
+		},(error)=>{
+			console.log(error.code);
 		});
 	}
 };
 exports.put = (req, res, next) => {
-    
+    // implementar codificação para editar usuário.
 };
 exports.delete = (req, res, next) => {
-    
+    // implementar codificação para deletar  usuário.
 };

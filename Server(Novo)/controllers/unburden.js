@@ -34,11 +34,18 @@ exports.post = (req, res, next) => {
 		}
 	}
 };
-exports.put = (req, res, next) => {
-    
-};
 exports.delete = (req, res, next) => {
-    
+    let connect = require('../config/connect');
+	let consulta = require('../model/consultas')(connect);
+	let id_desabafo = req.params.id;
+	
+	let deletar_desabafo = consulta.id_desabafo(id_desabafo);
+	
+	if(deletar_desabafo == false){
+		res.status(403).json({message:'Não possivel deletar desabafo'});
+	}else{
+		res.json({message:'Deletado com sucesso !!'});
+	}
 };
 
 exports.unburden = (req, res, next) => {
@@ -53,4 +60,8 @@ exports.unburden = (req, res, next) => {
 			res.json({desabafos:data.val()})
 		}
 	})    
+};
+
+exports.put = (req, res, next) => {
+    // implementar codificação para editar desabafo
 };

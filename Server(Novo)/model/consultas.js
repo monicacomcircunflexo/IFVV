@@ -2,32 +2,37 @@ class Consultas{
 	constructor(connection){
 		this.connection = connection;
 	}
-	todos_desabafos(callback){
-		this.connection.database().ref('/desabafos').once('value',callback);
+	remover_comentario(id_comentario){
+		this.connection.database().ref('comments/'+id_comentario).remove();
 	}
-	cadastrar_user(json){
-		this.connection.database().ref("usuarios").push().set(json);
+	remover_desabafo(id_desabafo){
+		this.connection.database().ref('comments/'+id_desabafo).remove();
 	}
-	comentar(json){
-		this.connection.database().ref("comentarios").push().set(json);	
+	todos_desabafos(resultado,error){
+		this.connection.database().ref('/desabafos').once('value').then(resultado,error);
 	}
-	comentarios(key,callback){
-		this.connection.database().ref("comentarios").orderByChild("id_desabafo").startAt(key).endAt(key + "\uf8ff").once('value').then(callback);
+	cadastrar_user(json,resultado,error){
+		this.connection.database().ref("users").push().set(json).then(resultado,error);
 	}
-	usuarios(cpf,callback){
-		this.connection.database().ref("/usuarios").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(callback);
+	comentar(json,resultado,error){
+		this.connection.database().ref("comments").push().set(json).then(resultado,error);
 	}
-	desabafos_pessoal(cpf,callback){
-		this.connection.database().ref("/desabafos").orderByChild("cpf_usuario").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(callback);
+	comentarios(key,resultado,error){
+		this.connection.database().ref("comments").orderByChild("id_desabafo").startAt(key).endAt(key + "\uf8ff").once('value').then(resultado,error);
 	}
-	verificar_usuario(cpf,callback){
-		this.connection.database().ref("/usuarios").orderByChild("cpf").equalTo(cpf).once('value').then(callback);
+	usuarios(cpf,resultado,error){
+		this.connection.database().ref("/users").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(resultado,error);
 	}
-	postar_desabafo(json){
-		this.connection.database().ref('desabafos').push().set(json);
+	desabafos_pessoal(cpf,resultado,error){
+		this.connection.database().ref("/outbursts").orderByChild("cpf_usuario").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(resultado,error);
+	}
+	verificar_usuario(cpf,resultado,error){
+		this.connection.database().ref("/users").orderByChild("cpf").equalTo(cpf).once('value').then(resultado,error);
+	}
+	postar_desabafo(json,resultado,error){
+		this.connection.database().ref('outbursts').push().set(json).then(resultado,error);
 	}
 }
-
 module.exports = (connection)=>{
 	return new Consultas(connection());
 }
