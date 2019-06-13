@@ -4,7 +4,7 @@ exports.login = (req, res, next) => {
   const bcrypt = require('bcrypt');
   const saltRounds  = 12;
   const connect = require('../config/connect');
-  var consultas = require('../model/consultas')(connect);
+  var consulta = require('../model/consultas')(connect);
 
 
   req.assert('cpf','Digite seu CPF.').notEmpty();
@@ -33,7 +33,12 @@ exports.login = (req, res, next) => {
                     );
                     res.json({
                       success: true,
-                      token: token
+                      token: token,
+                      user: {
+                        cpf: dados.cpf,
+                        name: dados.name,
+                        photo: dados.photo
+                      }
                     });
                   }else{
                     res.status(401).json({

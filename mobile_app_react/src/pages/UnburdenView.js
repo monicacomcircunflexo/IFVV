@@ -13,9 +13,13 @@ class UnburdenView extends Component {
 		desabafos:[],
 		message:'',
 		loggedIn: true,
-		user: JSON.parse(localStorage.getItem('user_info'))
+		user: JSON.parse(localStorage.getItem('user_info')) || {},
+		form: {
+			unburden: '',
+			visibility: true,
+			isAnonimaty: false
+		}
 	 }
-	 console.log(this.state);
 	}
 
 	componentWillMount () {
@@ -26,6 +30,41 @@ class UnburdenView extends Component {
 		}).then((message) => {
 			this.setState({message: 'Token expirado', desabafos: []});
 		});
+	}
+
+	_createUnburden () {
+		let unburdenModel = new Unburden;
+		let unburden = this.state.form;
+		unburden.cpf = this.state.user.cpf;
+		//unburden.create_at = new Date.now();
+		var _self = this;
+    unburdenModel.store.create('unburden', unburden).then( async function(unburden) {
+      _self.setState((prevState) => {
+        prevState.form = {
+					unburden: '',
+					visibility: true,
+					isAnonimaty: false
+				};
+        return prevState;
+      });
+		});
+	}
+
+	_updateField (event) {
+    let value = event.target.value;
+    let field = event.target.name;
+    this.setState((prevState) => {
+      prevState.form[field] = value;
+      return prevState;
+    });
+	}
+	
+	_updateCheckBox(event) {
+		let field = event.target.name;
+    this.setState((prevState) => {
+      prevState.form[field] = !prevState.form[field];
+      return prevState;
+    });
 	}
 
   render() {
@@ -40,15 +79,25 @@ class UnburdenView extends Component {
 						<Col sm={10}>
 							<Form>
 								<Form.Group controlId="exampleForm.ControlTextarea1">
-									<Form.Control as="textarea" rows="3" placeholder="" />
+									<Form.Control as="textarea" name="unburden" rows="3" placeholder="Escreva o que vc está passando" onChange={this._updateField.bind(this)} value={this.state.form.unburden} />
 								</Form.Group>
 								<Form.Group	>
 									<Form.Check
 										required
-										label="ANÔNIMO"
+										label="Anônimo"
+										name="isAnonimaty"
+										checked={this.state.form.isAnonimaty}
+										onChange={this._updateCheckBox.bind(this)}
+									/>
+									<Form.Check
+										required
+										name="visibility"
+										label="Público ?"
+										checked={this.state.form.visibility}
+										onChange={this._updateCheckBox.bind(this)}
 									/>
 								</Form.Group	>
-								<Button variant="ifvv" type="submit">
+								<Button variant="ifvv" onClick={this._createUnburden.bind(this)}>
 									DESABAFAR
 								</Button>
 							</Form>

@@ -6,7 +6,7 @@ const unburdenSchema = new Schema({
   properties: {
     cpf: { type: 'string' },
     create_at: { type: 'string' },
-    uburden: { type: 'string' },
+    unburden: { type: 'string' },
     isAnonimaty: { type: 'boolean'},
     visibility: {type: 'boolean'},
   }

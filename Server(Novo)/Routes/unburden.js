@@ -5,7 +5,7 @@ var controller = require('../controllers/unburden');
 
 
 router.get('/:id',controller.unburden);
-router.post('/:id', controller.post);
+router.post('/', controller.post);
 router.put('/:id', controller.put);
 router.delete('/:id', controller.delete);
 

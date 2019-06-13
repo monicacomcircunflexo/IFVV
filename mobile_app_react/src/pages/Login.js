@@ -42,6 +42,7 @@ class Login extends Component{
 			console.log(info);
 			if (response.status == 200) {
 				localStorage.setItem('token', info.token);
+				localStorage.setItem('user_info', JSON.stringify(info.user));
 				_self.setState((prevState) => {
 					prevState.loggedIn = true;
 					return prevState;

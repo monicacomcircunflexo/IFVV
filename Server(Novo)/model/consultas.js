@@ -9,7 +9,7 @@ class Consultas{
 		this.connection.database().ref('comments/'+id_desabafo).remove();
 	}
 	todos_desabafos(resultado,error){
-		this.connection.database().ref('/desabafos').once('value').then(resultado,error);
+		this.connection.database().ref('/outbursts').once('value').then(resultado,error);
 	}
 	cadastrar_user(json,resultado,error){
 		this.connection.database().ref("users").push().set(json).then(resultado,error);
@@ -24,9 +24,10 @@ class Consultas{
 		this.connection.database().ref("/users").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(resultado,error);
 	}
 	desabafos_pessoal(cpf,resultado,error){
-		this.connection.database().ref("/outbursts").orderByChild("cpf_usuario").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(resultado,error);
+		this.connection.database().ref("/outbursts").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(resultado,error);
 	}
 	verificar_usuario(cpf,resultado,error){
+		console.log(cpf);
 		this.connection.database().ref("/users").orderByChild("cpf").equalTo(cpf).once('value').then(resultado,error);
 	}
 	postar_desabafo(json,resultado,error){

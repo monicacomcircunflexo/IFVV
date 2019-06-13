@@ -15,7 +15,7 @@ class Desabafo extends Component{
     		 	</Col>
     		 	<Col sm={10}>
     		 		<p>{this.props.desabafo}</p>
-                    <span>{this.props.data}</span>
+            <span>{this.props.data}</span>
 					<a href='responder'> RESPONDER</a>
                 </Col>
 	        </Row>

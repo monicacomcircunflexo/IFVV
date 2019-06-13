@@ -2,7 +2,7 @@ exports.post = (req, res, next) => {
 	let connect = require('../config/connect');
 	let consulta = require('../model/consultas')(connect);
 
-    req.assert('desabafo','Escreva seu desabafo').notEmpty();
+    req.assert('unburden','Escreva seu desabafo').notEmpty();
 
 	let erros = req.validationErrors();
 
@@ -15,11 +15,13 @@ exports.post = (req, res, next) => {
 
 		let desabafo = {
 			cpf:req.body.cpf,
-			unburden:req.body.desabafo,
+			unburden:req.body.unburden,
 			create_at:date().format('LLLL'),
-			isAnonimaty:req.body.anonimo,
-			visibility:req.body.publico
+			isAnonimaty:req.body.isAnonimaty,
+			visibility:req.body.visibility
 		}
+
+		console.log(desabafo);
 
 		let registrar_desabafo = consulta.postar_desabafo(desabafo);
 
