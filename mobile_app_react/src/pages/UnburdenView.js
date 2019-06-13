@@ -22,21 +22,31 @@ class UnburdenView extends Component {
 	 }
 	}
 
-	componentWillMount () {
+	_loadUnburdens () {
 		let unburdenModel = new Unburden;
 		unburdenModel.store.findAll('unburdens').then((unburdens) => {
-			console.log(unburdens);
-			this.setState({message: '', desabafos: unburdens});
+			this.setState((prevState) => {
+				prevState.message = '';
+				prevState.desabafos= unburdens.reverse();
+				return prevState;
+			});
 		}).then((message) => {
-			this.setState({message: 'Token expirado', desabafos: []});
+			this.setState((prevState) => {
+				prevState.message = 'Token Expirado';
+				return prevState;
+			});
 		});
+	}
+
+	componentWillMount () {
+		this._loadUnburdens();
 	}
 
 	_createUnburden () {
 		let unburdenModel = new Unburden;
 		let unburden = this.state.form;
-		unburden.cpf = this.state.user.cpf;
-		//unburden.create_at = new Date.now();
+		unburden.user = this.state.user;
+		console.log(unburden);
 		var _self = this;
     unburdenModel.store.create('unburden', unburden).then( async function(unburden) {
       _self.setState((prevState) => {
@@ -46,7 +56,8 @@ class UnburdenView extends Component {
 					isAnonimaty: false
 				};
         return prevState;
-      });
+			});
+			_self._loadUnburdens();
 		});
 	}
 
@@ -67,6 +78,10 @@ class UnburdenView extends Component {
     });
 	}
 
+	renderUnburden(unburden) {
+		return <Desabafo unburden={unburden} key={unburden.key} />
+	}
+
   render() {
 
     return (
@@ -75,7 +90,7 @@ class UnburdenView extends Component {
 				<Header title={this.props.title} user={this.state.user}  />
 				<Container className='postagens'>
 					<Row className='postar_desabafo'>
-						<Col sm={2} className='center-img'><img src={this.state.user.photo} className="img-fluid mr-3" /></Col>
+						<Col sm={2} className='center-img'><img src={this.state.user.photo} className="img-fluid mr-3 img-thumbnail" /></Col>
 						<Col sm={10}>
 							<Form>
 								<Form.Group controlId="exampleForm.ControlTextarea1">
@@ -104,10 +119,7 @@ class UnburdenView extends Component {
 						</Col>
 					</Row>
 					<div className='linha'></div>
-					{
-						this.state.desabafos.map(desabafo =>
-						<Desabafo desabafo={desabafo.desabafo}  data={desabafo.data_postagem}/>
-					)}
+					{this.state.desabafos.map(this.renderUnburden.bind(this))}
 				</Container>
       </div>
     );

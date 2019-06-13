@@ -4,11 +4,17 @@ import { HttpAdapter, addAction } from 'js-data-http';
 const unburdenSchema = new Schema({
   type: 'object',
   properties: {
-    cpf: { type: 'string' },
+    user: { type: 'object', properties: {
+        cpf: {type: 'string' },
+        name: {type: 'string'},
+        photo: {type: 'string'},
+      }
+    },
     create_at: { type: 'string' },
     unburden: { type: 'string' },
     isAnonimaty: { type: 'boolean'},
     visibility: {type: 'boolean'},
+    key: {type: 'string'}
   }
 });
 

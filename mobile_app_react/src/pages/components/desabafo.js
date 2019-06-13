@@ -5,20 +5,24 @@ import '../css/desabafo.css';
 
 class Desabafo extends Component{
 	 constructor(props){
-	 	super(props);
+		 super(props);
+		 console.log(this.props);
 	 }
 	 render () {
     	return (
     		<Row sm={12} className='desabafo_container'>
     		 	<Col sm={2} className='center-img'>
-    		 		<img src="http://www.motta.com.br/wp-content/uploads/2018/09/80298-1-400x370.jpg" className="img-fluid mr-3" />
+    		 		<img src={!this.props.unburden.isAnonimaty?this.props.unburden.user.photo:"/img/logo.png"} className="img-fluid mr-3 img-thumbnail" />
     		 	</Col>
     		 	<Col sm={10}>
-    		 		<p>{this.props.desabafo}</p>
-            <span>{this.props.data}</span>
-					<a href='responder'> RESPONDER</a>
-                </Col>
-	        </Row>
+						<h6>{!this.props.unburden.isAnonimaty?this.props.unburden.user.name:"Anônimo"}</h6>
+    		 		<p>{this.props.unburden.unburden}</p>
+            <span>{this.props.unburden.create_at}</span>
+						<p>
+							<a href='responder'> RESPONDER</a>
+						</p>
+          </Col>
+	      </Row>
     	)
 	}
 }
