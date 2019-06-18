@@ -19,7 +19,7 @@ class Desabafo extends Component{
     		 		<p>{this.props.unburden.unburden}</p>
             <span>{this.props.unburden.create_at}</span>
 						<p>
-							<a href='responder'> RESPONDER</a>
+							<a href='responder'>Responder</a>
 						</p>
           </Col>
 	      </Row>

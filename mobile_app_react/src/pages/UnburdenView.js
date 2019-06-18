@@ -113,7 +113,7 @@ class UnburdenView extends Component {
 									/>
 								</Form.Group	>
 								<Button variant="ifvv" onClick={this._createUnburden.bind(this)}>
-									DESABAFAR
+									Desabafar
 								</Button>
 							</Form>
 						</Col>
