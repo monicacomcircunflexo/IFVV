@@ -1,12 +1,14 @@
 exports.unburdens = (req, res, next) => {
 	let connect = require('../config/connect');
 	let consulta = require('../model/consultas')(connect);
-	consulta.todos_desabafos((data)=>{
+	consulta.todos_desabafos((result)=>{
 		let dados = [];
-		data.forEach((desabafo)=>{
+		result.forEach((desabafo)=>{
 			dados.push(desabafo.val());
 		});
-		console.log(dados);
 		res.json(dados);
+	},(error)=>{
+		res.status(403).json({message:'Erro ao listar desabafos'});
 	})    
 };
+

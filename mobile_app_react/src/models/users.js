@@ -15,8 +15,7 @@ class User {
           return HttpAdapter.prototype.beforeHTTP.call(this, config, opts);
         }
       }
-    );
-    
+    );    
     this.store.registerAdapter('http', httpAdapter, { 'default': true });
     this.store.defineMapper('user', {
       endpoint: 'users',

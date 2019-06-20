@@ -18,10 +18,8 @@ exports.login = (req, res, next) => {
     });
   }else{
       consulta.verificar_usuario(req.body.cpf,(data)=>{
-        console.log(data.val());  
          if (data.val() != null) {
            data.forEach((user)=>{
-
               let dados = user.val();
               let cpf = dados.cpf;
               bcrypt.compare(req.body.password, dados.password, function(err, resposta) {
@@ -54,9 +52,14 @@ exports.login = (req, res, next) => {
               message: 'CPF ou Senha incorreto.'
             });
          }
+      },(error)=>{
+          res.status(417).json({
+            message:'Falha no firebase(Banco de dados)'
+          });
       });
     }
 };
+
 
 exports.verifytokenMiddle = (req, res, next) => {
 	let jwt = require('jsonwebtoken');

@@ -16,7 +16,6 @@ exports.post = (req, res, next) => {
 	let erros = req.validationErrors();
 
 	if(erros){
-		console.log(req.body);
 		res.status(403).json({
 			message:erros
 		});

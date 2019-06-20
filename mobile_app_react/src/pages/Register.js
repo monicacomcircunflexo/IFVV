@@ -77,6 +77,7 @@ class Register extends Component {
       });
     }, async function(response) {
       let res = response.data;
+      alert(response);
       let newState = _self.state;
       _self._resetErrors();
       res.message.forEach(error => {

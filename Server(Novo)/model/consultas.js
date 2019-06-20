@@ -20,14 +20,13 @@ class Consultas{
 	comentarios(key,resultado,error){
 		this.connection.database().ref("comments").orderByChild("id_desabafo").startAt(key).endAt(key + "\uf8ff").once('value').then(resultado,error);
 	}
-	usuarios(cpf,resultado,error){
+	usuario(cpf,resultado,error){
 		this.connection.database().ref("/users").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(resultado,error);
 	}
 	desabafos_pessoal(cpf,resultado,error){
 		this.connection.database().ref("/outbursts").orderByChild("cpf").startAt(cpf).endAt(cpf + "\uf8ff").once('value').then(resultado,error);
 	}
 	verificar_usuario(cpf,resultado,error){
-		console.log(cpf);
 		this.connection.database().ref("/users").orderByChild("cpf").equalTo(cpf).once('value').then(resultado,error);
 	}
 	postar_desabafo(json,resultado,error){

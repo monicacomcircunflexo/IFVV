@@ -4,6 +4,8 @@ exports.post = (req, res, next) => {
 	
     req.assert('comentario','Escreva seu comentario').notEmpty();
 
+
+
 	let erros = req.validationErrors();
 
 	if(erros){
@@ -17,25 +19,19 @@ exports.post = (req, res, next) => {
 			id_unburden:req.body.id_desabafo, // como passar esse id_desabafo ?
 			comment:req.body.comentario,
 			create_at:date().format('LLLL'),
-			cpf:req.body.cpf,
+			cpf:req.params.cpf,
 		}
 		
-		let comentar = consulta.comentar(comentario,()=>{
-
-		},(error)=>{
-
-		});
-
-		if(comentar == false){
-			res.status(403).json({
-				message:'Não foi possivel realizar comentário'
-			});
-		}else{
+		let comentar = consulta.comentar(comentario,(result)=>{
 			res.json({
 				message:'Comentário realizado'
 			});
-		}
-	}
+		},(error)=>{
+			res.status(417).json({
+				message:'Falha no firebase(Banco de dados)'
+			});
+		});
+	}	
 };
 
 exports.delete = (req, res, next) => {
