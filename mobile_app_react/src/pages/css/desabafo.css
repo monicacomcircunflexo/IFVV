@@ -3,15 +3,15 @@
 	align-items:center;
 	display:flex;
 	justify-content:center;
-
 	padding: 1rem 1rem;
 }
+
 p,span{
 	text-align:justify;
 }
 .desabafo_container img{
 	max-width:8rem;
-	border-radius:100px;
+	
 }
 .desabafo_container a{
 	color:#eaad29;

@@ -14,7 +14,7 @@ exports.post = (req, res, next) => {
 		date.locale('pt-BR');
 
 		let desabafo = {
-			cpf:req.body.cpf,
+			user: req.body.user,
 			unburden:req.body.unburden,
 			create_at:date().format('LLLL'),
 			isAnonimaty:req.body.isAnonimaty,

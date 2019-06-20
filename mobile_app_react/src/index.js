@@ -19,7 +19,7 @@ ReactDOM.render(
     <Route path="/register" render= {props => <Register title="IFVV - Novo membro" />} />
     <Route path="/login" render= {props => <Login title="IFVV " />} />
     <Route path="/unburden" render={props => <UnburdenView title="IFVV - Desabafos" />} />
-    <Route path="/unburdenList" render={props => <UnburdenList title="IFVV " />} />
+    <Route path="/unburdenList" render={props => <UnburdenList title="IFVV - Meus Desabafos" />} />
     <Route path="/perfil" render={props => <Profile title="IFVV " />} />
     <Route path="/responder" render={props => <Responder title="IFVV " />} />
   </Switch>
